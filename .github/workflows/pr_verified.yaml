@@ -1,14 +1,6 @@
 name: PR_Verified
 on:
   pull_request:
-    paths:
-      - "go.mod"
-      - "**.go"
-      - "**.yml"
-      - "**.yaml"
-      - "Makefile"
-      - "!deploy/kicbase/**"
-      - "!deploy/iso/**"
     types:
       - labeled
       - opened
@@ -26,7 +18,8 @@ jobs:
   # Runs before all other jobs
   # builds the minikube binaries
   build_minikube:
-    if: contains(github.event.pull_request.labels.*.name, 'pr_verified')
+    # if: contains(github.event.pull_request.labels.*.name, 'pr_verified')
+    # execute even if label is not set
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
